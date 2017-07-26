@@ -332,12 +332,22 @@
                 </div>
             </nav>
             <label for="name">Name</label>
-            <input name="name" id="name" type="text" value="Mapquest" class="form-control form-group" />
+            <input ng-model="model.website.name"
+                   name="name"
+                   id="name"
+                   type="text"
+                   value="Mapquest"
+                   class="form-control form-group" />
             <label for="description">Description</label>
-            <textarea name="description" id="description" type="text" rows="10" class="form-control form-group">Finally you will never need to buy an atlas again thanks to the state of the art technology of Mapquest!</textarea>
+            <textarea ng-model="model.website.description"
+                      name="description"
+                      id="description"
+                      type="text"
+                      rows="10"
+                      class="form-control form-group">Finally you will never need to buy an atlas again thanks to the state of the art technology of Mapquest!</textarea>
             <a href="website-list.html" class="btn btn-danger btn-block">Delete Website</a>
         </div>
     </div>
 </div>
 
-<div ng-include="'views/components/bottom-nav.component.client.html'"></div>
+<div ng-include="'views/components/templates/bottom-nav.component.client.html'"></div>

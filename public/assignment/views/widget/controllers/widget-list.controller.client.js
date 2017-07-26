@@ -1,6 +1,6 @@
 (function() {
     angular.module("WebAppMaker")
-        .controller("WidgetListController", WebsiteListController);
+        .controller("WidgetListController", WidgetListController);
 
     function WidgetListController() {
         var model = this;

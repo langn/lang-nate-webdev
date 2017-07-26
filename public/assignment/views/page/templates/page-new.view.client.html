@@ -297,11 +297,21 @@
                 </div>
             </nav>
             <label for="name">Page Name</label>
-            <input name="name" id="name" type="text" placeholder="Page Name" class="form-control form-group" />
+            <input ng-model="model.page.name"
+                   name="name"
+                   id="name"
+                   type="text"
+                   placeholder="Page Name"
+                   class="form-control form-group" />
             <label for="title">Page Title</label>
-            <input name="title" id="title" type="text" placeholder="Page Title" class="form-control form-group" />
+            <input ng-model="model.page.title"
+                   name="title"
+                   id="title"
+                   type="text"
+                   placeholder="Page Title"
+                   class="form-control form-group" />
         </div>
     </div>
 </div>
 
-<div ng-include="'views/components/bottom-nav.component.client.html'"></div>
+<div ng-include="'views/components/templates/bottom-nav.component.client.html'"></div>

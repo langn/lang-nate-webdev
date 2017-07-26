@@ -22,7 +22,17 @@
 
         //Creates the given user
         function createUser(user) {
+            user._id = generateRandomId();
+            delete user.verifyPassword;
             users.push(user);
+            return user;
+        }
+
+        //Prevent id conflicts (this isn't too important bc will be implemented
+        //server-side next week
+        function generateRandomId() {
+             var id = _.random(500, 50000000);
+             return "" + id;
         }
 
         //Finds the given user by user id
@@ -44,7 +54,7 @@
         function updateUser(uid, user) {
             //Get users array with all of the other users and stick the updated user on it
             users = _.reject(users, {'_id' : uid});
-            users.push(users);
+            users.push(user);
         }
 
         function deleteUser(uid) {

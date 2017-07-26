@@ -16,6 +16,9 @@ label {
     border-bottom: 0px;
 }
 
+.navbar-default .alert {
+    padding-top: 50px;
+}
 
 .navbar-default .navbar-brand {
     color: white;

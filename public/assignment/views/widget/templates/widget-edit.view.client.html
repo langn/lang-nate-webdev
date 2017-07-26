@@ -1,0 +1,11 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header pull-left">
+    <a href="widge-list.html" class="navbar-text fa fa-chevron-left fa-lg"></a>
+    <a class="navbar-brand" href="#">Edit Widget</a>
+  </div>
+  <div class="navbar-header pull-right">
+    <a href="widget-list.html" class="navbar-text fa fa-check fa-lg"></a>
+  </div>
+</nav>
+
+<div ng-include="model.getWidgetEditUrl(widget.widgetType)"></div>

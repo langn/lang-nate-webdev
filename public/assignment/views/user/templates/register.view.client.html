@@ -1,37 +1,60 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="navbar-header">
-    <a class="navbar-brand" href="#">Login</a>
-  </div>
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">Register</a>
+    </div>
 </nav>
 <div class="container-fluid">
-  <label for="username">Username</label>
-  <div class="form-group">
-      <input name="username"
-            id="username"
-            type="text"
-            placeholder="username"
-            class="form-control"/>
-  </div>
-  <label for="password">Password</label>
-  <div class="form-group">
-      <input name="password"
-            id="password"
-            type="password"
-            placeholder="password"
-            class="form-control"/>
-  </div>
-  <label for="verify-password">Verify Password</label>
-  <div class="form-group">
-      <input name="verify-password"
-            id="verify-password"
-            type="password"
-            placeholder="verify password"
-            class="form-control"/>
-  </div>
-  <div class="form-group">
-      <a href="profile.html" class="btn btn-primary btn-block">Register</a>
-  </div>
-  <div class="form-group">
-      <a href="login.html" class="btn btn-danger btn-block">Cancel</a>
-  </div>
+    <div ng-if="model.missingFields" class="alert alert-danger">You are missing one or more fields. Please try again</div>
+    <div ng-if="model.passwordMismatch" class="alert alert-danger">The two passwords did not match. Please try again</div>
+    <label for="username">Username</label>
+    <div class="form-group">
+        <input ng-model="user.username"
+               name="username"
+               id="username"
+               type="text"
+               placeholder="username"
+               class="form-control"/>
+    </div>
+    <label for="first-name">First Name</label>
+    <div class="form-group">
+        <input ng-model="user.firstName"
+               name="first-name"
+               id="first-name"
+               type="text"
+               placeholder="first name"
+               class="form-control"/>
+    </div>
+    <label for="last-name">Last Name</label>
+    <div class="form-group">
+        <input ng-model="user.lastName"
+               name="last-name"
+               id="last-name"
+               type="text"
+               placeholder="last name"
+               class="form-control"/>
+    </div>
+    <label for="password">Password</label>
+    <div class="form-group">
+        <input ng-model="user.password"
+               name="password"
+               id="password"
+               type="password"
+               placeholder="password"
+               class="form-control"/>
+    </div>
+    <label for="verify-password">Verify Password</label>
+    <div class="form-group">
+        <input ng-model="user.verifyPassword"
+               name="verify-password"
+               id="verify-password"
+               type="password"
+               placeholder="verify password"
+               class="form-control"/>
+    </div>
+    <div class="form-group">
+        <a ng-click="model.registerUser(user)" class="btn btn-primary btn-block">Register</a>
+    </div>
+    <div class="form-group">
+        <a href="#/" class="btn btn-danger btn-block">Cancel</a>
+    </div>
 </div>

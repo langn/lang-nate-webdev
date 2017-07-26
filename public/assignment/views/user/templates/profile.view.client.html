@@ -3,25 +3,41 @@
         <a class="navbar-brand" href="#">Profile</a>
     </div>
     <div class="navbar-header pull-right">
-        <a href="profile.html" class="navbar-text fa fa-check fa-lg"></a>
+        <a ng-click="model.updateUser()" class="navbar-text fa fa-check fa-lg"></a>
     </div>
 </nav>
 
 <div class="container-fluid">
     <label for="username">Username</label>
-    <input name="username" id="username" type="text" value="langn" class="form-control form-group" />
+    <input ng-model="model.user.username"
+           name="username"
+           id="username"
+           type="text"
+           class="form-control form-group" />
     <label for="email">Email</label>
-    <input name="email" id="email" type="email" value="natelang@example.com" class="form-control form-group" />
+    <input ng-model="model.user.email"
+           name="email"
+           id="email"
+           type="email"
+           class="form-control form-group" />
     <label for="first-name">First Name</label>
-    <input name="first-name" id="first-name" type="text" value="Nate" class="form-control form-group" />
+    <input ng-model="model.user.firstName"
+           name="first-name"
+           id="first-name"
+           type="text"
+           class="form-control form-group" />
     <label for="last-name">Last Name</label>
-    <input name="last-name" id="last-name" type="text" value="Lang" class="form-control form-group" />
+    <input ng-model="model.user.lastName"
+           name="last-name"
+           id="last-name"
+           type="text"
+           class="form-control form-group" />
     <div class="form-group">
-        <a href="website-list.html" class="btn btn-primary btn-block">Websites</a>
+        <a ng-click="model.goToWebsites()" class="btn btn-primary btn-block">Websites</a>
     </div>
     <div class="form-group">
-        <a href="login.html" class="btn btn-danger btn-block">Logout</a>
+        <a href="#/login" class="btn btn-danger btn-block">Logout</a>
     </div>
 </div>
 
-<div ng-include="'views/components/bottom-nav.component.client.html'"></div>
+<div ng-include="'views/components/templates/bottom-nav.component.client.html'"></div>

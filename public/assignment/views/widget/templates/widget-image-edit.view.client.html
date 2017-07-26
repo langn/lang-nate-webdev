@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <label for="name">Name</label>
+    <input name="name"
+           id="name"
+           type="text"
+           value="My image name"
+           class="form-control form-group"/>
+    <label for="text">Text</label>
+    <input name="text"
+           id="text"
+           type="text"
+           value="Lorem Ipsum"
+           class="form-control form-group"/>
+    <label for="url">URL</label>
+    <input name="url"
+           id="url"
+           type="url"
+           value="http://northeastern.edu"
+           class="form-control form-group"/>
+    <label for="width">Width</label>
+    <input name="width"
+           id="width"
+           type="number"
+           value="75"
+           class="form-control form-group"/>
+    <label for="upload">Upload</label>
+    <input name="upload"
+           id="upload"
+           type="file"
+           class="form-control form-group"/>
+    <div class="form-group">
+        <a href="#" class="btn btn-primary btn-block">Upload Image</a>
+        <a href="widget-list.html" class="btn btn-danger btn-block">Delete Image</a>
+    </div>
+</div>
+
+<div ng-include="'views/components/templates/bottom-nav.component.client.html'"></div>

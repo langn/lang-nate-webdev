@@ -297,13 +297,23 @@
                 </div>
             </nav>
             <label for="name">Page Name</label>
-            <input name="name" id="name" type="text" value="About Us" class="form-control form-group" />
+            <input ng-model="model.page.name"
+                   name="name"
+                   id="name"
+                   type="text"
+                   value="About Us"
+                   class="form-control form-group" />
             <label for="title">Page Title</label>
-            <input name="title" id="title" type="text" value="Lorem Ipsum" class="form-control form-group" />
+            <input ng-model="title"
+                   name="title"
+                   id="title"
+                   type="text"
+                   value="Lorem Ipsum"
+                   class="form-control form-group" />
             <a href="page-list.html" class="btn btn-danger btn-block">Delete Page</a>
         </div>
     </div>
 </div>
 
-<div ng-include="'views/components/bottom-nav.component.client.html'"></div>
+<div ng-include="'views/components/templates/bottom-nav.component.client.html'"></div>
 

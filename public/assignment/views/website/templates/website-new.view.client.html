@@ -332,11 +332,22 @@
                 </div>
             </nav>
             <label for="name">Name</label>
-            <input name="name" id="name" type="text" placeholder="Website Name" class="form-control form-group" />
+            <input ng-model="model.website.name"
+                   name="name"
+                   id="name"
+                   type="text"
+                   placeholder="Website Name"
+                   class="form-control form-group" />
             <label for="description">Description</label>
-            <textarea name="description" id="description" type="text" placeholder="Description" rows="10" class="form-control form-group"></textarea>
+            <textarea ng-model="model.website.description"
+                      name="description"
+                      id="description"
+                      type="text"
+                      placeholder="Description"
+                      rows="10"
+                      class="form-control form-group"></textarea>
         </div>
     </div>
 </div>
 
-<div ng-include="'views/components/bottom-nav.component.client.html'"></div>
+<div ng-include="'views/components/templates/bottom-nav.component.client.html'"></div>
