@@ -85,6 +85,15 @@ a + a.navbar-brand {
     border-right-color: slategray;
     border-right-style: solid;
     border-right-width: 4px;
+    opacity: 50%
+}
+
+
+.split-view-left > .partial-nav nav {
+    width: 25%;
+    border-right-color: slategray;
+    border-right-style: solid;
+    border-right-width: 4px;
     opacity: 50%;
 }
 

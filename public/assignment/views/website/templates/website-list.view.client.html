@@ -1,54 +1,13 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-header pull-left">
-        <a href="profile.html" class="navbar-text fa fa-chevron-left fa-lg"></a>
-        <a class="navbar-brand" href="#">Websites</a>
-    </div>
-    <div class="navbar-header pull-right">
-        <a href="website-new.html" class="navbar-text fa fa-plus fa-lg"></a>
-    </div>
-</nav>
+<div ng-include="'views/website/component/website-list-header.component.client.html'"></div>
 
 <ul class="list-group">
-    <li class="list-group-item">
+    <li ng-repeat="website in model.websites" class="list-group-item">
         <div class="row">
             <div class="col-xs-10">
-                <a href="page-list.html">Friendster</a>
+                <a ng-click="model.goToWebsitePages(website)">{{website.name}}</a>
             </div>
             <div class="col-xs-2">
-                <a href="website-edit.html" class="pull-right fa fa-cog"></a>
-            </div>
-        </div>
-    </li>
-
-    <li class="list-group-item">
-        <div class="row">
-            <div class="col-xs-10">
-                <a href="page-list.html">Mapquest</a>
-            </div>
-            <div class="col-xs-2">
-                <a href="website-edit.html" class="pull-right fa fa-cog"></a>
-            </div>
-        </div>
-    </li>
-
-    <li class="list-group-item">
-        <div class="row">
-            <div class="col-xs-10">
-                <a href="page-list.html">Ask.com</a>
-            </div>
-            <div class="col-xs-2">
-                <a href="website-edit.html" class="pull-right fa fa-cog"></a>
-            </div>
-        </div>
-    </li>
-
-    <li class="list-group-item">
-        <div class="row">
-            <div class="col-xs-10">
-                <a href="page-list.html">AOL</a>
-            </div>
-            <div class="col-xs-2">
-                <a href="website-edit.html" class="pull-right fa fa-cog"></a>
+                <a ng-click="model.goToEditWebsite(website)" class="pull-right fa fa-cog"></a>
             </div>
         </div>
     </li>

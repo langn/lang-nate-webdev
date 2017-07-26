@@ -1,55 +1,13 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="navbar-header pull-left">
-        <a href="website-list.html" class="navbar-text fa fa-chevron-left fa-lg"></a>
-        <a class="navbar-brand" href="#">Pages</a>
-    </div>
-    <div class="navbar-header pull-right">
-        <a href="page-new.html" class="navbar-text fa fa-plus fa-lg"></a>
-    </div>
-</nav>
+<div ng-include="'views/page/component/page-list-header.component.client.html'"></div>
 
 <ul class="list-group">
-    <li class="list-group-item">
+    <li ng-repeat="page in model.pages" class="list-group-item">
         <div class="row">
             <div class="col-xs-10">
-                <a href="widget-list.html">Home</a>
+                <a ng-click="model.goToWidgets(page)">{{page.name}}</a>
             </div>
             <div class="col-xs-2">
-                <a href="page-edit.html" class="pull-right fa fa-cog"></a>
-            </div>
-        </div>
-    </li>
-
-    <li class="list-group-item">
-        <div class="row">
-            <div class="col-xs-10">
-                <a href="widget-list.html">About Us</a>
-            </div>
-            <div class="col-xs-2">
-                <a href="page-edit.html" class="pull-right fa fa-cog"></a>
-            </div>
-        </div>
-    </li>
-
-    <li class="list-group-item">
-        <div class="row">
-            <div class="col-xs-10">
-                <a href="widget-list.html">News</a>
-            </div>
-            <div class="col-xs-2">
-                <a href="page-edit.html" class="pull-right fa fa-cog"></a>
-            </div>
-        </div>
-    </li>
-
-
-    <li class="list-group-item">
-        <div class="row">
-            <div class="col-xs-10">
-                <a href="widget-list.html">Contact Us</a>
-            </div>
-            <div class="col-xs-2">
-                <a href="page-edit.html" class="pull-right fa fa-cog"></a>
+                <a ng-click="model.goToEditPage(page)" class="pull-right fa fa-cog"></a>
             </div>
         </div>
     </li>

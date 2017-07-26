@@ -2,13 +2,25 @@
     angular.module("WebAppMaker")
         .controller("NewWebsiteController", NewWebsiteController);
 
-    function NewWebsiteController() {
+    function NewWebsiteController($routeParams, $location, WebsiteService) {
         var model = this;
 
-        function init() {
+        model.createNewWebsite = createNewWebsite;
 
+        var userId = $routeParams["uid"];
+        function init() {
+            model.emptyFields = false;
         }
         init();
+
+        function createNewWebsite(website) {
+            if (!website || !(website.name && website.description)) {
+                model.emptyFields = true;
+            } else {
+                WebsiteService.createWebsite(userId, website);
+                $location.path('/user/' + userId + '/website');
+            }
+        }
     }
 
 })();

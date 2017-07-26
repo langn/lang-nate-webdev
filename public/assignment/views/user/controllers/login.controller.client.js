@@ -7,7 +7,7 @@
         model.login = login;
 
         function init() {
-
+            model.invalidCredentials = false;
         }
         init();
 
@@ -16,7 +16,7 @@
            if (user) {
                $location.url("/user/" + user._id);
            } else {
-               model.alert = "The credentials provided did not match any users"
+               model.invalidCredentials = true;
            }
         }
     }

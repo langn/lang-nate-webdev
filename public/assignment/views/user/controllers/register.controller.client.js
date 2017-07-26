@@ -16,8 +16,6 @@
            if (!(user.password && user.verifyPassword && user.firstName && user.lastName)) {
                model.missingFields = true;
            } else if (user.password === user.verifyPassword) {
-               model.passwordMismatch = false;
-               model.missingFields = false;
                var newUser = UserService.createUser(user);
                $location.path('/user/' + newUser._id);
            } else {

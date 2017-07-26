@@ -15,6 +15,8 @@
             templateUrl: "views/user/templates/login.view.client.html",
             controller: "LoginController",
             controllerAs: "model"
+        }).when("/home", {
+            templateUrl: "views/user/templates/home.view.client.html"
         }).when("/register", {
             templateUrl: "views/user/templates/register.view.client.html",
             controller: "RegisterController",
@@ -35,27 +37,27 @@
             templateUrl: "views/website/templates/website-edit.view.client.html",
             controller: "EditWebsiteController",
             controllerAs: "model"
-        }).when("user/:uid/website/:wid/page", {
+        }).when("/user/:uid/website/:wid/page", {
             templateUrl: "views/page/templates/page-list.view.client.html",
-            controller: "PageListController",
+            controller: "PageListCtrl",
             controllerAs: "model"
-        }).when("user/:uid/website/:wid/page/new", {
+        }).when("/user/:uid/website/:wid/page/new", {
             templateUrl: "views/page/templates/page-new.view.client.html",
-            controller: "NewPageController",
+            controller: "PageNewCtrl",
             controllerAs: "model"
-        }).when("user/:uid/website/:wid/page/:pid", {
+        }).when("/user/:uid/website/:wid/page/:pid", {
             templateUrl: "views/page/templates/page-edit.view.client.html",
-            controller: "EditPageController",
+            controller: "EditPageCtrl",
             controllerAs: "model"
-        }).when("user/:uid/website/:wid/page/:pid/widget", {
-            templateUrl: "views/page/widget-list.view.client.html",
+        }).when("/user/:uid/website/:wid/page/:pid/widget", {
+            templateUrl: "views/widget/widget-list.view.client.html",
             controller: "WidgetListController",
             controllerAs: "model"
-        }).when("user/:uid/website/:wid/page/:pid/widget/new", {
+        }).when("/user/:uid/website/:wid/page/:pid/widget/new", {
             templateUrl: "views/page/widget-chooser.view.client.html",
             controller: "NewWidgetController",
             controllerAs: "model"
-        }).when("user/:uid/website/:wid/page/:pid/widget/:wgid", {
+        }).when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
             templateUrl: "views/widget/widget-edit.view.html",
             controller: "EditWidgetController",
             controllerAs: "model"

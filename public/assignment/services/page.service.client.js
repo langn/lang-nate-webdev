@@ -1,4 +1,4 @@
-(function (){
+(function() {
     angular.module("WebAppMaker")
         .service("PageService", PageService);
 
@@ -17,7 +17,15 @@
 
         function createPage(websiteId, page) {
             page.websiteId = websiteId;
+            page._id = generateRandomId();
             pages.push(page);
+        }
+
+        //Prevent id conflicts (this isn't too important bc will be implemented
+        //server-side next week
+        function generateRandomId() {
+            var id = _.random(500, 50000000);
+            return "" + id;
         }
 
         function findPagesByWebsiteId(websiteId) {
@@ -34,7 +42,7 @@
         }
 
         function deletePage(pageId) {
-            _.reject(pages, {"_id": pageId});
+            pages = _.reject(pages, {"_id": pageId});
         }
     }
 })();

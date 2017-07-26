@@ -21,7 +21,15 @@
 
         function createWebsite(userId, website) {
             website.developerId = userId;
+            website._id = generateRandomId();
             websites.push(website);
+        }
+
+        //Prevent id conflicts (this isn't too important bc will be implemented
+        //server-side next week
+        function generateRandomId() {
+            var id = _.random(500, 50000000);
+            return "" + id;
         }
 
         function findWebsitesByUser(userId) {

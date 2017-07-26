@@ -18,7 +18,7 @@
         }
 
         function goToWebsites() {
-            $location.path('/users/' + userId + '/website');
+            $location.path('/user/' + userId + '/website');
         }
     }
 })();
