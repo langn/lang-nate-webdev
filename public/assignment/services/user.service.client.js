@@ -1,8 +1,8 @@
 (function() {
     angular.module("WebAppMaker")
-           .factory("UserService", userService);
+           .factory("UserService", UserService);
     
-    function userService() {
+    function UserService() {
         var users = [
             { _id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder" },
             { _id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley" },
@@ -43,12 +43,12 @@
         //Updates the user with the given user id
         function updateUser(uid, user) {
             //Get users array with all of the other users and stick the updated user on it
-            users = _.reject(users, {'id' : id});
+            users = _.reject(users, {'_id' : uid});
             users.push(users);
         }
 
         function deleteUser(uid) {
-            users = _.reject(users, {'id' : id});
+            users = _.reject(users, {'_id' : uid});
         }
     }
 })();
