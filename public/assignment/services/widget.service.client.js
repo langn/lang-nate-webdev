@@ -23,7 +23,16 @@
 
         function createWidget(pageId, widget) {
             widget.pageId = pageId;
+            widget._id = generateRandomId();
             widgets.push(widget);
+            return widget;
+        }
+
+        //Prevent id conflicts (this isn't too important bc will be implemented
+        //server-side next week
+        function generateRandomId() {
+            var id = _.random(500, 50000000);
+            return "" + id;
         }
 
         function findWidgetsByPageId(pageId) {

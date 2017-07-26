@@ -1,18 +1,20 @@
 <div class="container-fluid">
   <label for="name">Name</label>
-  <input name="name"
+  <input ng-model="model.widget.name"
+          name="name"
          id="name"
          type="text"
-         value="My header"
          class="form-control form-group"/>
   <label for="text">Text</label>
-  <input name="text"
+  <input ng-model="model.widget.text"
+         name="text"
          id="text"
          type="text"
          value="I am a big header!"
          class="form-control form-group"/>
   <label for="size">Size</label>
-  <input name="size"
+  <input ng-model="model.widget.size"
+         name="size"
          id="size"
          list="sizes"
          type="number"
@@ -26,7 +28,7 @@
     <option value="6">
   </datalist>
   <div class="form-group">
-    <a href="widget-list.html" class="btn btn-danger btn-block">Delete Header</a>
+    <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">Delete Header</a>
   </div>
 </div>
 

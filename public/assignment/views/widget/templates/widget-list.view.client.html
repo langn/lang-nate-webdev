@@ -4,60 +4,18 @@
         <a class="navbar-brand" href="#/home">Widgets</a>
     </div>
     <div class="navbar-header pull-right">
-        <a href="widget-choose.html" class="navbar-text fa fa-plus fa-lg"></a>
+        <a ng-click="model.goToNewWidget()" class="navbar-text fa fa-plus fa-lg"></a>
     </div>
 </nav>
 
 <ul class="widget-list">
-    <li class="widget">
-        <img src="static/neu-logo.png">
+    <li ng-cloak ng-repeat="widget in model.widgets" class="widget">
+        <div ng-include="model.getWidgetIncludeUrl(widget.widgetType)"></div>
         <div class="widget-toolbar">
-            <a href="widget-image.html" class="fa fa-cog"></a>
-            <a href="#" class="fa fa-arrows"></a>
-        </div>
-    </li>
-
-    <li class="widget">
-        <div class="youtube-widget">
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
-        </div>
-        <div class="widget-toolbar">
-            <a href="widget-youtube.html" class="fa fa-cog"></a>
-            <a href="#" class="fa fa-arrows"></a>
-        </div>
-    </li>
-
-    <li class="widget">
-        <h1>This is an example header!</h1>
-        <div class="widget-toolbar">
-            <a href="widget-heading.html" class="fa fa-cog"></a>
-            <a href="#" class="fa fa-arrows"></a>
-        </div>
-    </li>
-
-    <li class="widget">
-        <h3>Here is another header but it is smaller!</h3>
-        <div class="widget-toolbar">
-            <a href="widget-heading.html" class="fa fa-cog"></a>
-            <a href="#" class="fa fa-arrows"></a>
-        </div>
-    </li>
-
-    <li class="widget">
-        <img src="static/neu-logo.png">
-        <div class="widget-toolbar">
-            <a href="widget-image.html" class="fa fa-cog"></a>
+            <a ng-click="model.goToEditWidget(widget)" class="fa fa-cog"></a>
             <a href="#" class="fa fa-arrows"></a>
         </div>
     </li>
 </ul>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="navbar-header pull-left">
-        <a href="#" class="navbar-text fa fa-play fa-lg"></a>
-        <a href="#" class="navbar-text fa fa-eye fa-lg"></a>
-    </div>
-    <div class="navbar-header pull-right">
-        <a href="#!/profile" class="navbar-text fa fa-user fa-lg"></a>
-    </div>
-</nav>
+<div ng-include="'views/components/templates/bottom-nav.component.client.html'"></div>
