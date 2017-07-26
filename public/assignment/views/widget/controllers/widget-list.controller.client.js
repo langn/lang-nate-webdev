@@ -11,6 +11,7 @@
         model.getWidgetIncludeUrl = getWidgetIncludeUrl;
         model.goToEditWidget = goToEditWidget;
         model.goToNewWidget = goToNewWidget;
+        model.goToPages = goToPages;
 
         var userId = $routeParams["uid"];
         var websiteId = $routeParams["wid"];
@@ -43,6 +44,10 @@
 
         function goToNewWidget() {
             $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/new');
+        }
+
+        function goToPages() {
+            $location.path('user/' + userId + '/website/' + websiteId + '/page');
         }
     }
 })();
