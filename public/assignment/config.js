@@ -33,4 +33,4 @@
             templateUrl: "views/widget/widget-edit.html"
         })
     }
-})()
+})();
