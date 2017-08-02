@@ -63,5 +63,5 @@ function updateWebsite(req, res) {
 function deleteWebsite(req, res) {
     var websiteId = req.params.websiteId;
     websites = _.reject(websites, {"_id": websiteId});
-    return res.sendStatus(200);
+    return res.sendStatus(204);
 }
