@@ -2,14 +2,8 @@
     angular.module("WebAppMaker")
            .factory("UserService", UserService);
     
-    function UserService() {
-        var users = [
-            { _id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder" },
-            { _id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley" },
-            { _id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia" },
-            { _id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi" }
-        ];
-        
+    function UserService($http) {
+
         var api = {
             "createUser" : createUser,
             "findUserById" : findUserById,
@@ -22,10 +16,10 @@
 
         //Creates the given user
         function createUser(user) {
-            user._id = generateRandomId();
-            delete user.verifyPassword;
-            users.push(user);
-            return user;
+            $http.post("/api/user", user)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         //Prevent id conflicts (this isn't too important bc will be implemented
