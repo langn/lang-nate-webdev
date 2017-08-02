@@ -29,7 +29,7 @@
         }
 
         function findWidgetsByPageId(pageId) {
-            return $http.get("/api/page/" + pageId + "widget")
+            return $http.get("/api/page/" + pageId + "/widget")
                 .then(function(response) {
                    if (response.status === 200) {
                        return response.data;

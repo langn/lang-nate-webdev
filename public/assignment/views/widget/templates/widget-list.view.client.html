@@ -8,14 +8,6 @@
     </div>
 </nav>
 
-<ul class="widget-list">
-    <li ng-cloak ng-repeat="widget in model.widgets" class="widget">
-        <div ng-include="model.getWidgetIncludeUrl(widget.widgetType)"></div>
-        <div class="widget-toolbar">
-            <a ng-click="model.goToEditWidget(widget)" class="fa fa-cog"></a>
-            <a href="#" class="fa fa-arrows"></a>
-        </div>
-    </li>
-</ul>
+<sortable></sortable>
 
 <div ng-include="'views/components/templates/bottom-nav.component.client.html'"></div>

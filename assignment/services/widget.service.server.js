@@ -5,6 +5,7 @@ app.post('/api/page/:pageId/widget', createWidget);
 app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
 app.get('/api/widget/:widgetId', findWidgetById);
 app.put('/api/widget/:widgetId', updateWidget);
+app.put('/api/page/:pageId/widget', reorderWidgets);
 app.delete('/api/widget/:widgetId', deleteWidget);
 
 var widgets = [
@@ -60,6 +61,17 @@ function updateWidget(req, res) {
     var widget = req.body;
     widgets = _.reject(widgets, {"_id": widgetId});
     widgets.push(widget);
+    return res.sendStatus(204);
+}
+
+function reorderWidgets(req, res) {
+    var initialPos = req.query.initial;
+    var finalPos = req.query.final;
+    var pageId = req.params.pageId;
+    var widgetsForPage = _.filter(widgets, {"pageId" : pageId});
+    widgetsForPage.splice(finalPos, 0, widgetsForPage.splice(initialPos, 1)[0]);
+    widgets = _.reject(widgets, {"pageId" : pageId});
+    widgets = _.concat(widgetsForPage, widgets);
     return res.sendStatus(204);
 }
 

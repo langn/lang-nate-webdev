@@ -26,7 +26,6 @@
         init();
 
         function trustUrlResource(url) {
-            console.log(url);
             var youtubeUrl = "https://www.youtube.com/embed/";
             var urlParts = url.split("/");
             youtubeUrl += urlParts[urlParts.length-1];
