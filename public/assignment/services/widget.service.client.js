@@ -2,7 +2,7 @@
     angular.module("WebAppMaker")
         .service("WidgetService", WidgetService);
 
-    function WidgetService() {
+    function WidgetService($http) {
         this.createWidget = createWidget;
         this.findWidgetsByPageId = findWidgetsByPageId;
         this.findWidgetById = findWidgetById;
@@ -22,34 +22,40 @@
         ];
 
         function createWidget(pageId, widget) {
-            widget.pageId = pageId;
-            widget._id = generateRandomId();
-            widgets.push(widget);
-            return widget;
-        }
-
-        //Prevent id conflicts (this isn't too important bc will be implemented
-        //server-side next week
-        function generateRandomId() {
-            var id = _.random(500, 50000000);
-            return "" + id;
+            return $http.post("/api/page/" + pageId + "/widget", widget)
+                .then(function(response) {
+                   return response.data;
+                });
         }
 
         function findWidgetsByPageId(pageId) {
-            return _.filter(widgets, {"pageId": pageId});
+            return $http.get("/api/page/" + pageId + "widget")
+                .then(function(response) {
+                   if (response.status === 200) {
+                       return response.data;
+                   } else {
+                       return [];
+                   }
+                });
         }
 
         function findWidgetById(widgetId) {
-            return _.find(widgets, {"_id": widgetId});
+            return $http.get("/api/widget/" + widgetId)
+                .then(function(response) {
+                    if (response.status === 200) {
+                        return response.data;
+                    } else {
+                        return null;
+                    }
+                });
         }
 
         function updateWidget(widgetId, widget) {
-            widgets = _.reject(widgets, {"_id": widgetId});
-            widgets.push(widget);
+            return $http.put("/api/widget/" + widgetId, widget);
         }
 
         function deleteWidget(widgetId) {
-            widgets = _.reject(widgets, {"_id": widgetId});
+            return $http.delete("api/widget" + widgetId)
         }
     }
 })();

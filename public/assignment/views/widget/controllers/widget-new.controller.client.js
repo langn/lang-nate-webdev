@@ -13,27 +13,33 @@
         var userId = $routeParams["uid"];
         var websiteId = $routeParams["wid"];
         var pageId = $routeParams["pid"];
-        function init() {
 
+        function init() {
         }
         init();
 
         function createHeader() {
             var widgetStub = {widgetType: "HEADING"};
-            var widget = WidgetService.createWidget(pageId, widgetStub);
-            $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widget._id);
+            WidgetService.createWidget(pageId, widgetStub)
+                .then(function(widget) {
+                    $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widget._id);
+                });
         }
 
         function createImage() {
             var widgetStub = {widgetType: "IMAGE"};
-            var widget = WidgetService.createWidget(pageId, widgetStub);
-            $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widget._id);
+            WidgetService.createWidget(pageId, widgetStub)
+                .then(function(widget) {
+                    $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widget._id);
+                });
         }
 
         function createYoutube() {
             var widgetStub = {widgetType: "YOUTUBE"};
-            var widget = WidgetService.createWidget(pageId, widgetStub);
-            $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widget._id);
+            WidgetService.createWidget(pageId, widgetStub)
+                .then(function(widget) {
+                    $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widget._id);
+                });
         }
 
         function goToWidgetList() {

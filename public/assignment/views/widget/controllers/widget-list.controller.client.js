@@ -18,7 +18,10 @@
         var pageId = $routeParams["pid"];
 
         function init() {
-            model.widgets = WidgetService.findWidgetsByPageId(pageId);
+            WidgetService.findWidgetsByPageId(pageId)
+                .then(function(widgets) {
+                    model.widgets = widgets;
+                });
         }
         init();
 

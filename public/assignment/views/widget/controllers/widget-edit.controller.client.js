@@ -20,7 +20,10 @@
         init();
 
         function getWidgetEditUrl() {
-            model.widget = WidgetService.findWidgetById(widgetId);
+            WidgetService.findWidgetById(widgetId)
+                .then(function(widget) {
+                    model.widget = widget;
+                });
             return "views/widget/templates/editors/widget-" + _.lowerCase(model.widget.widgetType) + "-edit.view.client.html";
         }
 
@@ -29,13 +32,17 @@
         }
 
         function submitWidget() {
-            WidgetService.updateWidget(model.widget._id, model.widget);
-            goToWidgetList();
+            WidgetService.updateWidget(model.widget._id, model.widget)
+                .then(function() {
+                    goToWidgetList();
+                });
         }
 
         function deleteWidget() {
-            WidgetService.deleteWidget(model.widget._id);
-            $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget');
+            WidgetService.deleteWidget(model.widget._id)
+                .then(function() {
+                    $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget');
+                });
         }
     }
 
