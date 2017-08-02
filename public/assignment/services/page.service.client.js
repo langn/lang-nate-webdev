@@ -2,47 +2,48 @@
     angular.module("WebAppMaker")
         .service("PageService", PageService);
 
-    function PageService() {
+    function PageService($http) {
         this.createPage = createPage;
         this.findPagesByWebsiteId = findPagesByWebsiteId;
         this.findPageById = findPageById;
         this.updatePage = updatePage;
         this.deletePage = deletePage;
 
-        var pages = [
-            { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
-            { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
-            { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
-        ];
-
         function createPage(websiteId, page) {
-            page.websiteId = websiteId;
-            page._id = generateRandomId();
-            pages.push(page);
-        }
-
-        //Prevent id conflicts (this isn't too important bc will be implemented
-        //server-side next week
-        function generateRandomId() {
-            var id = _.random(500, 50000000);
-            return "" + id;
+            return $http.post("/api/website/" + websiteId + "/page", page)
+                .then(function(response) {
+                    return response.data;
+                });
         }
 
         function findPagesByWebsiteId(websiteId) {
-            return _.filter(pages, {"websiteId" : websiteId});
+            return $http.get("/api/website/" + websiteId + "/page")
+                .then(function(response) {
+                    if (response.status === 200) {
+                        return response.data;
+                    } else {
+                        return [];
+                    }
+                });
         }
 
         function findPageById(pageId) {
-            return _.find(pages, {"_id" : pageId});
+            return $http.get("/api/page/" + pageId)
+                .then(function(response) {
+                    if (response.status === 200) {
+                        return response.data
+                    } else {
+                        return null;
+                    }
+                });
         }
 
         function updatePage(pageId, page) {
-            pages = _.reject(pages, {"_id" : pageId});
-            pages.push(page);
+            return $http.put("/api/page/" + pageId, page);
         }
 
         function deletePage(pageId) {
-            pages = _.reject(pages, {"_id": pageId});
+            return $http.delete("/api/page/" + pageId);
         }
     }
 })();

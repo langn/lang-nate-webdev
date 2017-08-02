@@ -18,8 +18,10 @@
             if (!page || !(page.name && page.title)) {
                 model.emptyFields = true;
             } else {
-                PageService.createPage(websiteId, page);
-                $location.path('/user/' + userId + '/website/' + websiteId + '/page');
+                PageService.createPage(websiteId, page)
+                    .then(function() {
+                        $location.path('/user/' + userId + '/website/' + websiteId + '/page');
+                    });
             }
         }
     }

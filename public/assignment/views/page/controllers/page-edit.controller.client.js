@@ -11,8 +11,12 @@
         var userId = $routeParams["uid"];
         var websiteId = $routeParams["wid"];
         var pageId = $routeParams["pid"];
+
         function init() {
-            model.page = PageService.findPageById(pageId);
+            PageService.findPageById(pageId)
+                .then(function(page) {
+                    model.page = page;
+                });
             model.emptyFields = false;
         }
         init();
@@ -21,8 +25,9 @@
             if (!model.page || !(model.page.name && model.page.title)) {
                 model.emptyFields = true;
             } else {
-                PageService.updatePage(pageId, model.page);
-                $location.path('/user/' + userId + '/website/' + websiteId + '/page');
+                PageService.updatePage(pageId, model.page).then(function() {
+                    $location.path('/user/' + userId + '/website/' + websiteId + '/page');
+                });
             }
         }
 

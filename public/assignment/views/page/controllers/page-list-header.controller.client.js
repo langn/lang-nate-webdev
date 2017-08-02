@@ -17,7 +17,7 @@
         init();
 
         function goToWebsite() {
-            $location.path('user/' + userId + '/website/' + websiteId);
+            $location.path('user/' + userId + '/website/');
         }
 
         function goToNewPage() {
