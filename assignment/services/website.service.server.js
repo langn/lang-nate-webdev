@@ -35,7 +35,7 @@ function generateRandomId() {
 function findAllWebsitesForUser(req, res) {
     var userId = req.params.userId;
     var matchedSites = _.filter(websites, {"developerId" : userId});
-    if (!matchedSites) {
+    if (_.isEmpty(matchedSites)) {
         return res.sendStatus(404);
     } else {
         return res.status(200).json(matchedSites);
