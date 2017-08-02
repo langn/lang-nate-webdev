@@ -1,52 +1,49 @@
 (function() {
     angular.module("WebAppMaker")
-           .service("WebsiteService", WebsiteService);
+        .service("WebsiteService", WebsiteService);
 
-    function WebsiteService() {
+    function WebsiteService($http) {
         this.createWebsite = createWebsite;
         this.findWebsitesByUser = findWebsitesByUser;
         this.findWebsiteById = findWebsiteById;
         this.updateWebsite = updateWebsite;
         this.deleteWebsite = deleteWebsite;
 
-        var websites = [
-            { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
-            { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem" },
-            { "_id": "456", "name": "Gizmodo",     "developerId": "456", "description": "Lorem" },
-            { "_id": "890", "name": "Go",          "developerId": "123", "description": "Lorem" },
-            { "_id": "567", "name": "Tic Tac Toe", "developerId": "123", "description": "Lorem" },
-            { "_id": "678", "name": "Checkers",    "developerId": "123", "description": "Lorem" },
-            { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem" }
-        ];
-
         function createWebsite(userId, website) {
-            website.developerId = userId;
-            website._id = generateRandomId();
-            websites.push(website);
-        }
-
-        //Prevent id conflicts (this isn't too important bc will be implemented
-        //server-side next week
-        function generateRandomId() {
-            var id = _.random(500, 50000000);
-            return "" + id;
+            return $http.post("/api/user/" + userId + "/website", website)
+                .then(function(response) {
+                    return response.data;
+                });
         }
 
         function findWebsitesByUser(userId) {
-            return _.filter(websites, {"developerId" : userId});
+            return $http.get("/api/user/" + userId + "/website")
+                .then(function(response) {
+                    if (response.status === 200) {
+                        return response.data;
+                    } else {
+                        return [];
+                    }
+                });
         }
 
         function findWebsiteById(websiteId) {
-            return _.find(websites, {"_id" : websiteId});
+            return $http.get("/api/website/" + websiteId)
+                .then(function(response) {
+                    if (response.status === 200) {
+                        return response.data;
+                    } else {
+                        return null;
+                    }
+                })
         }
 
         function updateWebsite(websiteId, website) {
-            websites = _.reject(websites, {"_id" : websiteId});
-            websites.push(website);
+            return $http.put("/api/website/" + websiteId, website);
         }
 
         function deleteWebsite(websiteId) {
-            websites = _.reject(websites, {"_id": websiteId});
+            return $http.delete("/api/website/" + websiteId);
         }
     }
 })();

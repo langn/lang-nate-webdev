@@ -17,8 +17,10 @@
             if (!website || !(website.name && website.description)) {
                 model.emptyFields = true;
             } else {
-                WebsiteService.createWebsite(userId, website);
-                $location.path('/user/' + userId + '/website');
+                WebsiteService.createWebsite(userId, website)
+                    .then(function(website){
+                        $location.path('/user/' + userId + '/website');
+                    });
             }
         }
     }

@@ -11,7 +11,10 @@
         var userId = $routeParams["uid"];
         var websiteId = $routeParams["wid"];
         function init() {
-            model.website = WebsiteService.findWebsiteById(websiteId);
+           WebsiteService.findWebsiteById(websiteId)
+               .then(function(website) {
+                   model.website = website;
+               });
             model.emptyFields = false;
         }
         init();
@@ -20,14 +23,18 @@
             if (!model.website || !(model.website.name && model.website.description)) {
                 model.emptyFields = true;
             } else {
-                WebsiteService.updateWebsite(websiteId, model.website);
-                $location.path('/user/' + userId + '/website');
+                WebsiteService.updateWebsite(websiteId, model.website)
+                    .then(function() {
+                        $location.path('/user/' + userId + '/website');
+                    });
             }
         }
 
         function deleteWebsite() {
-            WebsiteService.deleteWebsite(websiteId);
-            $location.path('/user/' + userId + '/website');
+            WebsiteService.deleteWebsite(websiteId)
+                .then(function() {
+                    $location.path('/user/' + userId + '/website');
+                });
         }
     }
 
