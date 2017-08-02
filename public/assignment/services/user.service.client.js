@@ -16,43 +16,51 @@
 
         //Creates the given user
         function createUser(user) {
-            $http.post("/api/user", user)
+            return $http.post("/api/user", user)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
-        //Prevent id conflicts (this isn't too important bc will be implemented
-        //server-side next week
-        function generateRandomId() {
-             var id = _.random(500, 50000000);
-             return "" + id;
-        }
-
         //Finds the given user by user id
         function findUserById(uid) {
-            return _.find(users, {'_id' : uid});
+            return $http.get("/api/user/" + uid)
+                .then(function (response) {
+                    return response.data;
+                })
         }
 
         //Finds the given user by username
         function findUserByUsername(username) {
-            return _.find(users, {'username' : username});
+            return $http.get("/api/user?username=" + username)
+                .then(function (response) {
+                    if (response.status === 200) {
+                        return response.data;
+                    } else {
+                        return null;
+                    }
+                });
         }
 
         //Finds the given user by their login credentials
         function findUserByCredentials(username, password) {
-            return _.find(users, {'username' : username, 'password' : password});
+            return $http.get("/api/user?username=" + username + "&password=" + password)
+                .then(function (response) {
+                    if (response.status === 200) {
+                        return response.data;
+                    } else {
+                        return null;
+                    }
+                })
         }
 
         //Updates the user with the given user id
         function updateUser(uid, user) {
-            //Get users array with all of the other users and stick the updated user on it
-            users = _.reject(users, {'_id' : uid});
-            users.push(user);
+            return $http.put("/api/user/" + uid, user);
         }
 
         function deleteUser(uid) {
-            users = _.reject(users, {'_id' : uid});
+            return $http.delete("/api/user" + uid);
         }
     }
 })();

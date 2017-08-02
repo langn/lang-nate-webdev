@@ -9,7 +9,10 @@
         model.goToWebsites = goToWebsites;
 
         function init() {
-            model.user = UserService.findUserById(userId);
+            UserService.findUserById(userId)
+                .then(function(user) {
+                    model.user = user;
+                });
         }
         init();
 

@@ -12,12 +12,14 @@
         init();
 
         function login(user) {
-           user = UserService.findUserByCredentials(user.username, user.password) ;
-           if (user) {
-               $location.url("/user/" + user._id);
-           } else {
-               model.invalidCredentials = true;
-           }
+           UserService.findUserByCredentials(user.username, user.password)
+               .then(function(user) {
+                   if (user) {
+                       $location.url("/user/" + user._id);
+                   } else {
+                       model.invalidCredentials = true;
+                   }
+               });
         }
     }
 
