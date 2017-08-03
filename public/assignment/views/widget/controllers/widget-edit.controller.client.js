@@ -20,7 +20,11 @@
             WidgetService.findWidgetById(widgetId)
                 .then(function(widget) {
                     model.widget = widget;
-                })
+                });
+            model.userId = userId;
+            model.websiteId = websiteId;
+            model.pageId = pageId;
+            model.widgetId = widgetId;
         }
         init();
 

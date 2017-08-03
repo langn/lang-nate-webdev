@@ -60,6 +60,10 @@ function findWidgetById(req, res) {
     }
 }
 
+function getWidgetById(widgetId) {
+    return _.find(widgets, {"_id" : widgetId});
+}
+
 function updateWidget(req, res) {
     var widgetId = req.params.widgetId;
     var widget = req.body;
@@ -86,6 +90,25 @@ function deleteWidget(req, res) {
 }
 
 function uploadImage(req, res) {
-    console.log(req.file);
-    return res.sendStatus(200);
+    var widgetId = req.body.widgetId;
+    var width = req.body.width;
+    var myFile = req.file;
+
+    var userId = req.body.userId;
+    var websiteId = req.body.websiteId;
+    var pageId = req.body.pageId;
+
+    var originalname = myFile.originalname;
+    var filename = myFile.filename;
+    var path = myFile.path;
+    var destination = myFile.destination;
+    var size = myFile.size;
+    var mimetype = myFile.mimetype;
+
+    widget = getWidgetById(widgetId);
+    widget.url = '/uploads/' + filename;
+
+    var callbackUrl = "/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget";
+
+    res.redirect(callbackUrl);
 }

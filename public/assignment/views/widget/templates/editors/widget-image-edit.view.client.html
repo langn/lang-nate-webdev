@@ -36,11 +36,30 @@
                value="75"
                class="form-control form-group"/>
         <label for="upload">Upload</label>
-        <input ng-model="model.widget.upload"
-               name="upload"
+        <input name="myFile"
                id="upload"
                type="file"
                class="form-control form-group"/>
+        <input ng-model="model.userId"
+               name="userId"
+               id="userId"
+               type="text"
+               class="do-not-display"/>
+        <input ng-model="model.websiteId"
+               name="websiteId"
+               id="websiteId"
+               type="text"
+               class="do-not-display"/>
+        <input ng-model="model.pageId"
+               name="pageId"
+               id="pageId"
+               type="text"
+               class="do-not-display"/>
+        <input ng-model="model.widgetId"
+               name="widgetId"
+               id="widgetId"
+               type="text"
+               class="do-not-display"/>
         <div class="form-group">
             <button type="submit" href="#" class="btn btn-primary btn-block">Upload Image</button>
             <a ng-click="model.deleteWidget()" class="btn btn-danger btn-block">Delete Image</a>

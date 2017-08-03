@@ -150,6 +150,9 @@ li.widget {
     top: 5px;
 }
 
+.do-not-display{
+    display: none;
+}
 
 /* .form-control + .form-control {
     margin-top: 10px;
