@@ -16,15 +16,19 @@
         var widgetId = $routeParams["wgid"];
 
         function init() {
+            model.widget = {widgetType: ""};
+            WidgetService.findWidgetById(widgetId)
+                .then(function(widget) {
+                    model.widget = widget;
+                })
         }
         init();
 
         function getWidgetEditUrl() {
-            WidgetService.findWidgetById(widgetId)
-                .then(function(widget) {
-                    model.widget = widget;
-                });
-            return "views/widget/templates/editors/widget-" + _.lowerCase(model.widget.widgetType) + "-edit.view.client.html";
+            if (!(model.widget.widgetType === "")) {
+                var url = "views/widget/templates/editors/widget-" + _.lowerCase(model.widget.widgetType) + "-edit.view.client.html";
+                return url;
+            }
         }
 
         function goToWidgetList() {
