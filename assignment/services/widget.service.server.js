@@ -1,5 +1,8 @@
 var app = require("../../express");
 var _ = require('lodash');
+var multer = require('multer');
+
+var upload = multer({dest: __dirname+'/../../public/uploads'});
 
 app.post('/api/page/:pageId/widget', createWidget);
 app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
@@ -7,6 +10,7 @@ app.get('/api/widget/:widgetId', findWidgetById);
 app.put('/api/widget/:widgetId', updateWidget);
 app.put('/api/page/:pageId/widget', reorderWidgets);
 app.delete('/api/widget/:widgetId', deleteWidget);
+app.post('/api/upload', upload.single('myFile'),  uploadImage);
 
 var widgets = [
     { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -79,4 +83,9 @@ function deleteWidget(req, res) {
     var widgetId = req.params.widgetId;
     widgets = _.reject(widgets, {"_id": widgetId});
     return res.sendStatus(204);
+}
+
+function uploadImage(req, res) {
+    console.log(req.file);
+    return res.sendStatus(200);
 }
