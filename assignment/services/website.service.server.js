@@ -1,5 +1,6 @@
 var app = require("../../express");
 var _ = require('lodash');
+var websiteModel = require('../model/website.model.server');
 
 app.post('/api/user/:userId/website', createWebsite);
 app.get('/api/user/:userId/website', findAllWebsitesForUser);
@@ -19,49 +20,61 @@ var websites = [
 
 function createWebsite(req, res) {
     var website = req.body;
-    website.developerId = req.params.userId;
-    website._id = generateRandomId();
-    websites.push(website);
-    return res.status(201).json(website);
-}
+    var developerId = req.params.userId;
 
-//Prevent id conflicts (this isn't too important bc will be implemented
-//server-side next week
-function generateRandomId() {
-    var id = _.random(500, 50000000);
-    return "" + id;
+    websiteModel.createWebsiteForUser(developerId, website)
+        .then(function(response) {
+            return res.status(201).json(response);
+        }).catch(function(error) {
+            return res.status(500).json('Error creating website for user ' + error);
+    });
 }
 
 function findAllWebsitesForUser(req, res) {
     var userId = req.params.userId;
-    var matchedSites = _.filter(websites, {"developerId" : userId});
-    if (_.isEmpty(matchedSites)) {
-        return res.sendStatus(404);
-    } else {
-        return res.status(200).json(matchedSites);
-    }
+    websiteModel.findAllWebsitesForUser(userId)
+        .then(function(response) {
+            if (response === []) {
+                return res.sendStatus(404);
+            } else {
+                return res.status(200).json(response);
+            }
+        }).catch(function(error) {
+            return res.status(500).json('Error fetching sites for user ' + error);
+    });
 }
 
 function findWebsiteById(req, res) {
     var websiteId = req.params.websiteId;
-    var website = _.find(websites, {"_id" : websiteId});
-    if (!website) {
-        return res.sendStatus(404);
-    } else {
-        return res.status(200).json(website);
-    }
+    websiteModel.findWebsiteById(websiteId)
+        .then(function(response) {
+            if (!response) {
+                return res.sendStatus(404);
+            } else {
+                return res.status(200).json(response);
+            }
+        }).catch(function(error) {
+        return res.status(500).json('Error fetching website by id ' + error);
+    });
 }
 
 function updateWebsite(req, res) {
     var websiteId = req.params.websiteId;
     var website = req.body;
-    websites = _.reject(websites, {"_id" : websiteId});
-    websites.push(website);
-    return res.sendStatus(204);
+    websiteModel.updateWebsite(websiteId, website)
+        .then(function() {
+            return res.sendStatus(204);
+        }).catch(function(error) {
+            return res.status(500).json('Error updating website ' + error);
+    })
 }
 
 function deleteWebsite(req, res) {
     var websiteId = req.params.websiteId;
-    websites = _.reject(websites, {"_id": websiteId});
-    return res.sendStatus(204);
+    websiteModel.deleteWebsite(websiteId)
+        .then(function() {
+            return res.sendStatus(204);
+        }).catch(function(error) {
+        return res.status(500).json('Error deleting website ' + error);
+    })
 }
