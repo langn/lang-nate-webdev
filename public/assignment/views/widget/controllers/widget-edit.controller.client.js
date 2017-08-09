@@ -29,8 +29,8 @@
         init();
 
         function getWidgetEditUrl() {
-            if (!(model.widget.widgetType === "")) {
-                var url = "views/widget/templates/editors/widget-" + _.lowerCase(model.widget.widgetType) + "-edit.view.client.html";
+            if (!(model.widget.type === "")) {
+                var url = "views/widget/templates/editors/widget-" + _.lowerCase(model.widget.type) + "-edit.view.client.html";
                 return url;
             }
         }

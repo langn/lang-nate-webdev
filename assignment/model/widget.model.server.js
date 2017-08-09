@@ -18,10 +18,8 @@ function createWidget(pageId, widget) {
 
     return widgetModel.create(widget)
         .then(function(response) {
-            pageModel.addWidget(pageId, response._doc._id)
-                .then(function() {
-                    return response;
-                })
+            pageModel.addWidget(pageId, response._id);
+            return response;
         }).catch(function(error) {
             console.error('Error creating widget ' + error);
         });
