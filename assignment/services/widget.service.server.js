@@ -84,32 +84,22 @@ function deleteWidget(req, res) {
 
 function uploadImage(req, res) {
     var widgetId = req.body.widgetId;
-    var width = req.body.width;
     var myFile = req.file;
 
     var userId = req.body.userId;
     var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
 
-    var originalname = myFile.originalname;
     var filename = myFile.filename;
-    var path = myFile.path;
-    var destination = myFile.destination;
-    var size = myFile.size;
-    var mimetype = myFile.mimetype;
 
     var widget = null;
 
     widgetModel.findWidgetById(widgetId)
         .then(function(response) {
             widget = response;
+            widget.url = '/uploads/' + filename;
+            widgetModel.updateWidget(widgetId, widget);
+            var callbackUrl = "/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget";
+            res.redirect(callbackUrl);
         });
-
-    widget.url = '/uploads/' + filename;
-
-    widgetModel.updateWidget(widgetId, widget);
-
-    var callbackUrl = "/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget";
-
-    res.redirect(callbackUrl);
 }

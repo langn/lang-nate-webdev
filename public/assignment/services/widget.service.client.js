@@ -43,7 +43,7 @@
         }
 
         function deleteWidget(widgetId) {
-            return $http.delete("api/widget" + widgetId)
+            return $http.delete("/api/widget/" + widgetId)
         }
     }
 })();
