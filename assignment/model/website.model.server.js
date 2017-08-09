@@ -8,6 +8,8 @@ websiteModel.findAllWebsitesForUser = findAllWebsitesForUser;
 websiteModel.findWebsiteById = findWebsiteById;
 websiteModel.updateWebsite = updateWebsite;
 websiteModel.deleteWebsite = deleteWebsite;
+websiteModel.addPage = addPage;
+websiteModel.deletePage = deletePage;
 
 module.exports = websiteModel;
 
@@ -47,4 +49,16 @@ function deleteWebsite(websiteId) {
         }).catch(function(error) {
             console.error('Error deleting website ' + error);
         });
+}
+
+function addPage(websiteId, pageId) {
+    return websiteModel.update(
+        {_id: websiteId},
+        {$push: {pages: pageId}});
+}
+
+function deletePage(websiteId, pageId) {
+    return websiteModel.update(
+        {_id: websiteId},
+        {$pull: {pages: pageId}});
 }
