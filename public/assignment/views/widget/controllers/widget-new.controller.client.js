@@ -10,6 +10,7 @@
         model.createYoutube = createYoutube;
         model.goToWidgetList = goToWidgetList;
         model.createHtml = createHtml;
+        model.createInput = createInput;
 
         var userId = $routeParams["uid"];
         var websiteId = $routeParams["wid"];
@@ -20,7 +21,7 @@
         init();
 
         function createHeader() {
-            var widgetStub = {widgetType: "HEADING"};
+            var widgetStub = {type: "HEADING"};
             WidgetService.createWidget(pageId, widgetStub)
                 .then(function(widget) {
                     $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widget._id);
@@ -28,7 +29,7 @@
         }
 
         function createImage() {
-            var widgetStub = {widgetType: "IMAGE"};
+            var widgetStub = {type: "IMAGE"};
             WidgetService.createWidget(pageId, widgetStub)
                 .then(function(widget) {
                     $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widget._id);
@@ -36,7 +37,7 @@
         }
 
         function createYoutube() {
-            var widgetStub = {widgetType: "YOUTUBE"};
+            var widgetStub = {type: "YOUTUBE"};
             WidgetService.createWidget(pageId, widgetStub)
                 .then(function(widget) {
                     $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widget._id);
@@ -45,13 +46,20 @@
 
 
         function createHtml() {
-            var widgetStub = {widgetType: "HTML"};
+            var widgetStub = {type: "HTML"};
             WidgetService.createWidget(pageId, widgetStub)
                 .then(function(widget) {
                     $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widget._id);
                 });
         }
 
+        function createInput() {
+            var widgetStub = {type: "INPUT"};
+            WidgetService.createWidget(pageId, widgetStub)
+                .then(function(widget) {
+                    $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widget._id);
+                });
+        }
         function goToWidgetList() {
             $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget');
         }

@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var widgetSchema = require('widget.schema.server');
+var widgetSchema = require('./widget.schema.server');
 var pageModel = require('./page.model.server');
 
 var widgetModel = mongoose.model("WidgetModel", widgetSchema);
@@ -18,7 +18,7 @@ function createWidget(pageId, widget) {
 
     return widgetModel.create(widget)
         .then(function(response) {
-            pageModel.addWidget(pageId, response._id)
+            pageModel.addWidget(pageId, response._doc._id)
                 .then(function() {
                     return response;
                 })
