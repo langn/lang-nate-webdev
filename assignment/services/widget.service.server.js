@@ -98,7 +98,8 @@ function uploadImage(req, res) {
         .then(function(response) {
             widget = response;
             widget.url = '/uploads/' + filename;
-            widgetModel.updateWidget(widgetId, widget);
+            return widgetModel.updateWidget(widgetId, widget)})
+        .then(function() {
             var callbackUrl = "/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget";
             res.redirect(callbackUrl);
         });
