@@ -16,17 +16,24 @@ module.exports = widgetModel;
 function createWidget(pageId, widget) {
     widget._page = pageId;
 
-    return widgetModel.create(widget)
+    return widgetModel.findOne().sort('-order')
         .then(function(response) {
-            pageModel.addWidget(pageId, response._id);
-            return response;
-        }).catch(function(error) {
-            console.error('Error creating widget ' + error);
+            if (response && (response.order != null)) {
+                widget.order = response.order + 1;
+            } else {
+                widget.order = 0;
+            } return widgetModel.create(widget)
+                .then(function(response) {
+                    pageModel.addWidget(pageId, response._id);
+                    return response;
+                }).catch(function(error) {
+                    console.error('Error creating widget ' + error);
+                });
         });
 }
 
 function findAllWidgetsForPage(pageId) {
-    return widgetModel.find({_page: pageId});
+    return widgetModel.find({_page: pageId}).sort('order');
 }
 
 function findWidgetById(widgetId) {
@@ -49,5 +56,20 @@ function deleteWidget(widgetId) {
 }
 
 function reorderWidget(pageId, start, end) {
+    var firstWidget;
+    var secondWidget;
 
+    widgetModel.findOne({order: start, _page: pageId})
+        .then(function(firstObject) {
+            firstWidget = firstObject;
+            return widgetModel.findOne({order: end, _page: pageId})
+        }).then(function(secondObject) {
+            secondWidget = secondObject;
+            firstWidget.order = end;
+            secondWidget.order = start;
+            firstWidget.save();
+            secondWidget.save();
+    }).catch(function(error) {
+        console.error('Error reordering objects ' + error);
+    })
 }

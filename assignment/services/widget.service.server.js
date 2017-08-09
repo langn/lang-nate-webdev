@@ -68,10 +68,7 @@ function reorderWidgets(req, res) {
     var initialPos = req.query.initial;
     var finalPos = req.query.final;
     var pageId = req.params.pageId;
-    var widgetsForPage = _.filter(widgets, {"pageId" : pageId});
-    widgetsForPage.splice(finalPos, 0, widgetsForPage.splice(initialPos, 1)[0]);
-    widgets = _.reject(widgets, {"pageId" : pageId});
-    widgets = _.concat(widgetsForPage, widgets);
+    widgetModel.reorderWidget(pageId, initialPos, finalPos);
     return res.sendStatus(204);
 }
 
