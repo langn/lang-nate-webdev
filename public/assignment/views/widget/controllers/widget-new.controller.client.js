@@ -9,6 +9,7 @@
         model.createImage = createImage;
         model.createYoutube = createYoutube;
         model.goToWidgetList = goToWidgetList;
+        model.createHtml = createHtml;
 
         var userId = $routeParams["uid"];
         var websiteId = $routeParams["wid"];
@@ -36,6 +37,15 @@
 
         function createYoutube() {
             var widgetStub = {widgetType: "YOUTUBE"};
+            WidgetService.createWidget(pageId, widgetStub)
+                .then(function(widget) {
+                    $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widget._id);
+                });
+        }
+
+
+        function createHtml() {
+            var widgetStub = {widgetType: "HTML"};
             WidgetService.createWidget(pageId, widgetStub)
                 .then(function(widget) {
                     $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widget._id);

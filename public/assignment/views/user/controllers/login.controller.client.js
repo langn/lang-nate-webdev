@@ -19,7 +19,9 @@
                    } else {
                        model.invalidCredentials = true;
                    }
-               });
+               }).catch(function() {
+                   model.invalidCredentials = true;
+           });
         }
     }
 

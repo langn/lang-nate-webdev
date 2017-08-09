@@ -12,6 +12,7 @@
         model.goToEditWidget = goToEditWidget;
         model.goToNewWidget = goToNewWidget;
         model.goToPages = goToPages;
+        model.getTrustedHtml = getTrustedHtml;
 
         var userId = $routeParams["uid"];
         var websiteId = $routeParams["wid"];
@@ -34,6 +35,10 @@
 
         function trustHtmlContent(htmlContent) {
             return $sce.trustAsHtml(htmlContent);
+        }
+
+        function getTrustedHtml(widget) {
+            return $sce.trustAsHtml(widget.text);
         }
 
         function getWidgetIncludeUrl(widgetType) {

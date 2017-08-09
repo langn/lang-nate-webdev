@@ -8,6 +8,8 @@ pageModel.findAllPagesForWebsite = findAllPagesForWebsite;
 pageModel.findPageById = findPageById;
 pageModel.updatePage = updatePage;
 pageModel.deletePage = deletePage;
+pageModel.addWidget = addWidget;
+pageModel.deleteWidget = deleteWidget;
 
 module.exports = pageModel;
 
@@ -41,9 +43,21 @@ function deletePage(pageId) {
     return pageModel.findOneAndRemove({_id: pageId})
         .then(function(response) {
             if (response._website) {
-                websiteModel.deleteWebsite(response._website, pageId);
+                websiteModel.deletePage(response._website, pageId);
             }
         }).catch(function(error) {
             console.error('Error deleting page ' + error);
         });
+}
+
+function addWidget(pageId, widgetId) {
+    return pageModel.update(
+        {_id: pageId},
+        {$push: {widgets: widgetId}});
+}
+
+function deleteWidget(pageId, widgetId) {
+    return pageModel.update(
+        {_id: pageId},
+        {$pull: {widgets: widgetId}});
 }
