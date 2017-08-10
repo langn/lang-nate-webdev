@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var widgetSchema = require('./widget.schema.server');
 var pageModel = require('./page.model.server');
+var _ = require('lodash');
 
 var widgetModel = mongoose.model("WidgetModel", widgetSchema);
 
@@ -33,7 +34,7 @@ function createWidget(pageId, widget) {
 }
 
 function findAllWidgetsForPage(pageId) {
-    return widgetModel.find({_page: pageId}).sort('order');
+    return widgetModel.find({_page: pageId}).sort('-order');
 }
 
 function findWidgetById(widgetId) {
@@ -56,20 +57,35 @@ function deleteWidget(widgetId) {
 }
 
 function reorderWidget(pageId, start, end) {
-    var firstWidget;
-    var secondWidget;
+    widgetModel.findAllWidgetsForPage(pageId)
+        .then(function(widgets) {
+            var reverseStart = (widgets.length - 1) - start;
+            var reverseEnd = (widgets.length - 1) - end;
+            if (Math.abs(start - end) > 1) {
+                incrementItemsAbove(widgets, reverseEnd);
+                if (reverseStart > reverseEnd) {
+                    widgets[reverseEnd].order = widgets[reverseStart].order - 1;
+                } else {
+                    widgets[reverseEnd].order = widgets[reverseStart].order + 1;
+                }
+            } else {
+                var temp = widgets[reverseEnd].order;
+                widgets[reverseEnd].order = widgets[reverseStart].order;
+                widgets[reverseStart].order = temp;
+            }
 
-    widgetModel.findOne({order: start, _page: pageId})
-        .then(function(firstObject) {
-            firstWidget = firstObject;
-            return widgetModel.findOne({order: end, _page: pageId})
-        }).then(function(secondObject) {
-            secondWidget = secondObject;
-            firstWidget.order = end;
-            secondWidget.order = start;
-            firstWidget.save();
-            secondWidget.save();
-    }).catch(function(error) {
-        console.error('Error reordering objects ' + error);
-    })
+            for(var i = reverseEnd; i < widgets.length; i++) {
+                widgets[i].save();
+            }
+
+        }).catch(function(error) {
+        console.error('Error reordering widgets ' + error);
+    });
 }
+
+function incrementItemsAbove(widgets, index) {
+    for(var i = index; i < widgets.length; i++) {
+        widgets[i].order = widgets[i].order + 1;
+    }
+}
+
