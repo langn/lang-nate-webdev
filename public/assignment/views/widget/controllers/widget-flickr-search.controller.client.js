@@ -2,11 +2,12 @@
     angular.module('WebAppMaker')
         .controller('FlickrImageSearchController', FlickrImageSearchController);
 
-    function FlickrImageSearchController(FlickrService, $routeParams, $location) {
+    function FlickrImageSearchController(FlickrService, WidgetService, $routeParams, $location) {
         var model = this;
 
         model.searchPhotos = searchPhotos;
         model.goToEditImage = goToEditImage;
+        model.selectPhoto = selectPhoto;
 
         var userId = $routeParams['uid'];
         var websiteId = $routeParams['wid'];
@@ -26,6 +27,16 @@
                     model.photos = data;
                     console.log(model.photos);
                 })
+        }
+
+        function selectPhoto(photo) {
+            var url = "https://farm" + photo.farm + ".staticflickr.com/" + photo.server;
+            url += "/" + photo.id + "_" + photo.secret + "_b.jpg";
+            WidgetService.updateWidget(widgetId, {url: url})
+                .then(function() {
+                    $location.path('user/' + userId + '/website/' + websiteId
+                        + '/page/' + pageId + '/widget/' + widgetId);
+                });
         }
 
         function goToEditImage() {

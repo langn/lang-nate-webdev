@@ -152,6 +152,10 @@ li.widget {
     display: none;
 }
 
+.flickr-thumbnail {
+    padding-top: 10px;
+}
+
 /* .form-control + .form-control {
     margin-top: 10px;
 } */
