@@ -9,6 +9,7 @@
         model.goToWidgetList = goToWidgetList;
         model.submitWidget = submitWidget;
         model.deleteWidget = deleteWidget;
+        model.searchForImages = searchForImages;
 
         var userId = $routeParams["uid"];
         var websiteId = $routeParams["wid"];
@@ -51,6 +52,10 @@
                 .then(function() {
                     $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget');
                 });
+        }
+
+        function searchForImages() {
+            $location.path('user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId + '/flickrSearch');
         }
     }
 
