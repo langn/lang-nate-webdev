@@ -1,37 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Web Dev Course Home Page</title>
+    <title>Nate Lang</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Boostrap JS-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 </head>
 <body>
-    <h1>Web Dev Course Home Page</h1>
+<nav class="nav navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">Nate <strong>Lang</strong></a>
+        </div>
+        <div id="navbar" class="navbar-right navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="http://spotify-party.herokuapp.com"><strong>PROJECT</strong></a></li>
+                <li><a href="http://summer2-webdev-assignments.herokuapp.com"><strong>ASSIGNMENTS</strong></a></li>
+                <li><a href="https://spotify-party.herokuapp.com"><strong>GITHUB</strong><small>project</small></a></li>
+                <li><a href="https://spotify-party.herokuapp.com"><strong>GITHUB</strong><small>assignments</small></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-    <p>
-        This is your website's home page. Your home page should have a picture of yourself, link to your assignments,
-        link to your final project implementation on Heroku, link to your GitHub,
-        link to a 5 minute video demoing your project. Your home page should look
-        spectacular. You should feel proud to share your homepage with your potential employer.
-        I should feel proud to share your homepage with my colleagues.
-    </p>
-
-    <h2>Required links</h2>
-    <ul>
-        <li>
-            <a href="project/index.html">Project</a>
-        </li>
-        <li>
-            <a href="assignment/">Assignment</a>
-        </li>
-        <li>
-            <a href="test/index.html">Test MongoDB</a>
-        </li>
-        <li>
-            <a href="https://github.com/langn/lang-nate-webdev">Your public repository at GitHub.com</a>
-        </li>
-        <li>
-            <a href="/lectures">Lectures</a>
-        </li>
-    </ul>
+<div class="container-fluid wooden-background">
+    <div class="row margin-top-24 margin-bottom-42">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-1 media-rect">
+            <a href="https://linkedin.com/in/natelang" class="logo fa fa-linkedin fa-5x"></a>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="hidden-xs col-sm-2 media-rect nate-photo"></div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-1 media-rect">
+            <a href="https://github.com/langn" class="logo fa fa-github fa-5x"></a>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</div>
 </body>
 </html>

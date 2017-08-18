@@ -12,10 +12,9 @@ label {
 }
 
 .navbar-default {
-    background-color: #337ab7;
+    background-color: #282828;
     border-bottom: 0px;
 }
-
 
 .navbar-default .alert {
     padding-top: 50px;
@@ -37,14 +36,64 @@ label {
     margin-bottom: 10px;
 }
 
-.navbar-header a {
+.navbar-default .navbar-nav>li>a {
+    color: whitesmoke;
+    font-size: 17px;
     display: inline-block;
     padding: 18px 14px;
+    font-weight: 400;
     margin: 0px 0px;
 }
 
+.navbar-header a strong {
+    font-weight: 575;
+}
 .navbar-header > .navbar-brand {
-    padding-top: 14px;
+    height: 56px;
+    padding: 18px 14px;
+}
+
+.navbar-header .navbar-brand{
+     font-size: 24px;
+}
+
+.wooden-background {
+    background: url("../static/background.jpg");
+}
+
+.nate-photo {
+    background: url("../static/profile-picture.png");
+}
+
+.media-rect.nate-photo {
+    margin-top: -8%;
+    height: 248px;
+    width: 248px;
+}
+
+.container-fluid {
+    height: 100%;
+    display: table;
+    width: 100%;
+    padding: 0;
+}
+
+.row-fluid {
+    height:100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.margin-top-24 {
+    margin-top: 24%;
+}
+
+.margin-top-10 {
+    margin-top: 10%;
+}
+
+.margin-bottom-42 {
+    margin-bottom: 42%;
 }
 
 .navbar-default .navbar-text {
@@ -79,6 +128,26 @@ a + a.navbar-brand {
     position: absolute;
     overflow-y: scroll;
     padding-bottom: 30px;
+}
+
+.media-rect {
+    background-color: lightgray;
+    border-radius: 10px;
+    height: auto;
+    width: auto;
+    padding: 10px 15px;
+}
+
+.media-rect a, p {
+    color: #282828;
+}
+
+.media-rect p {
+    font-size: 25px;
+}
+
+.media-rect img {
+
 }
 
 .split-view-left > nav {
