@@ -56,12 +56,16 @@ label {
      font-size: 24px;
 }
 
-.wooden-background {
-    background: url("../static/background.jpg");
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-position: center center;
+html {
+    background: url("../static/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
+}
+
+body {
+    background-color: inherit;
 }
 
 .nate-photo {
@@ -69,18 +73,26 @@ label {
 }
 
 .media-rect.nate-photo {
-    margin-top: -7%;
+    margin-top: -19%;
     height: 248px;
     width: 248px;
 }
 
 
 .margin-top-30 {
-    margin-top: 18%;
+    margin-top: 15%;
 }
 
 .margin-top-10 {
+    margin-top: 15%;
+}
+
+.margin-top-20 {
     margin-top: 20%;
+}
+
+.container-fluid h1 {
+    color: rgb(211, 211, 211);
 }
 
 .margin-bottom-30 {
